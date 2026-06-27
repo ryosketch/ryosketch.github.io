@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Golf Stats</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+<header class="hero">
+
+    <div class="hero-overlay">
+
+        <h1>Golf Stats</h1>
+
+        <p>Personal Golf Analytics</p>
+
+    </div>
+
+</header>
+
+
+<div class="card">
+
+<div class="section-header">
+
+<h2>ラウンド登録</h2>
+
+ <span id="roundTotal">
+        20件
+ </span>
+
+</div>
+
+<p class="section-subtitle">
+ラウンド結果を記録します
+</p>
+
+<div class="form-row">
+
+    <div class="form-group">
+
+        <label for="date">
+            日付
+        </label>
+
+        <input
+            type="date"
+            id="date">
+
+    </div>
+
+    <div class="form-group">
+
+        <label for="course">
+            ゴルフ場
+        </label>
+
+        <input
+            type="text"
+            id="course"
+            placeholder="ゴルフ場名">
+
+    </div>
+
+</div>
+
+<div class="form-row">
+
+    <div class="form-group">
+
+        <label for="score">
+            スコア
+        </label>
+
+        <input
+            type="number"
+            id="score">
+
+    </div>
+
+    <div class="form-group">
+
+        <label for="putts">
+            パット数
+        </label>
+
+        <input
+            type="number"
+            id="putts">
+
+    </div>
+
+    <div class="form-group">
+
+        <label for="ob">
+            OB数
+        </label>
+
+        <input
+            type="number"
+            id="ob">
+
+    </div>
+
+</div>
+
+<label for="memo">
+    メモ
+</label>
+
+<textarea
+    id="memo"
+    placeholder="今日の反省点や気付きなど">
+</textarea>
+
+<div class="button-area">
+
+    <button onclick="addRound()">
+    ⛳ 保存
+    </button>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>統計</h2>
+
+<div class="stats-grid">
+
+    <div class="stat-card">
+        <div class="stat-value" id="bestScore">-</div>
+        <div class="stat-label">BEST</div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-value" id="avgScore">-</div>
+        <div class="stat-label">AVG</div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-value" id="roundCount">0</div>
+        <div class="stat-label">ROUND</div>
+    </div>
+    
+    <div class="stat-card">
+    <div class="stat-value" id="recent5">-</div>
+
+    <div
+        id="recentTrend"
+        style="
+        font-size:24px;
+        margin-top:5px;
+        ">
+    </div>
+
+    <div class="stat-label">RECENT 5</div>
+</div>
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>スコア推移</h2>
+
+<canvas id="scoreChart"></canvas>
+
+</div>
+
+<div class="card">
+
+<h2>ラウンド一覧</h2>
+
+<table>
+
+<thead>
+<tr>
+    <th>順位</th>
+    <th>日付</th>
+    <th>コース</th>
+    <th>スコア</th>
+    <th>削除</th>
+</tr>
+</thead>
+
+<tbody id="roundList">
+</tbody>
+
+</table>
+
+<div class="more-area">
+
+    <button
+        id="toggleRoundsBtn"
+        onclick="toggleRounds()">
+
+        続きを表示
+
+    </button>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>ラウンド詳細</h2>
+
+<div id="detailCard">
+
+<p>ラウンドを選択してください</p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+    <h2>コース別成績</h2>
+
+    <select
+        id="courseSelect"
+        onchange="renderCourseStats()">
+    </select>
+
+    <div id="courseStats">
+
+    </div>
+
+    <h3>スコア推移</h3>
+    <p id="courseChartMessage" class="chart-message">
+    このコースは2ラウンド以上でグラフを表示します
+    </p>
+
+<canvas id="courseChart"></canvas>
+
+</div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+
+<script src="script.js"></script>
+
+</body>
+</html>
