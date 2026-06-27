@@ -36,6 +36,8 @@ text-align:center;
     box-shadow:
     0 8px 20px rgba(0,0,0,.08);
 
+    overflow:hidden;
+
 }
 
 input,
@@ -213,6 +215,11 @@ canvas{
     border-radius:15px;
 
     padding:10px;
+
+    max-width:100%;
+    height:auto !important;
+
+
 
 }
 
@@ -633,4 +640,30 @@ label{
     background:#fafafa;
 
     margin-top:20px;
+}
+
+@media (max-width: 768px){
+
+    .form-row{
+
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+    }
+
+    .form-group{
+
+        width: 100%;
+
+    }
+
+    .form-group input,
+    .form-group textarea{
+
+        width: 100%;
+        box-sizing: border-box;
+
+    }
+
 }
