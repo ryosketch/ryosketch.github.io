@@ -124,8 +124,25 @@
     <button onclick="addRound()">
     ⛳ 保存
     </button>
+    
+    <button onclick="exportData()">
+        📤 データを書き出す
+    </button>
+
+    <button onclick="document.getElementById('importFile').click()">
+        📥 データを読み込む
+    </button>
+    <input
+    type="file"
+    id="importFile"
+    accept=".json"
+    onchange="importData(event)"
+    style="display:none;"> 
+
 
 </div>
+
+
 
 </div>
 

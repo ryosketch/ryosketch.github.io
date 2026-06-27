@@ -742,5 +742,108 @@ function drawCourseChart(course){
 });
 
     
+}
+
+
+function exportData(){
+
+    const json =
+    JSON.stringify(rounds,null,2);
+
+    const blob =
+    new Blob(
+        [json],
+        {type:"application/json"}
+    );
+
+    const url =
+    URL.createObjectURL(blob);
+
+    const a =
+    document.createElement("a");
+
+    a.href = url;
+
+    const today = new Date();
+
+    const fileName =
+    `rounds-${
+    today.getFullYear()
+    }-${
+    String(today.getMonth()+1).padStart(2,"0")
+    }-${
+    String(today.getDate()).padStart(2,"0")
+    }.json`;
+
+    a.download = fileName;
+
+    a.click();
+
+    URL.revokeObjectURL(url);
+
+}
+
+
+
+function importData(event){
+
+    if(!confirm(
+    "現在のデータを上書きしますか？"
+    )){
+
+    return;
+
+    }
+
+    const file =
+    event.target.files[0];
+
+    if(!file){
+
+        return;
+
+    }
+
+    const reader =
+    new FileReader();
+
+    reader.onload =
+    function(e){
+
+        try{
+
+             const data =
+            JSON.parse(
+                e.target.result
+            );
+
+            if(!Array.isArray(data)){
+
+                alert(
+                "データ形式が正しくありません"
+                );
+
+                return;
+
+            }
+
+            rounds = data;
+
+            save();
+
+            render();
+
+            alert("読み込み完了");
+
+        }catch{
+
+            alert(
+            "JSONファイルではありません"
+            );
+        }
+
+    };
+
+    reader.readAsText(file);
 
 }
